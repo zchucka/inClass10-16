@@ -9,11 +9,20 @@
 import UIKit
 
 class SecondViewController: UIViewController {
-
+    var username: String? = nil
+    @IBOutlet var welcomeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // task: set the welcome label to show something like welcome, username
+        welcomeLabel.text = "welcome, anon"
+        if let name = username {
+            if name != "" {
+                welcomeLabel.text = "Welcome, \(name)"
+            }
+        }
     }
     
 

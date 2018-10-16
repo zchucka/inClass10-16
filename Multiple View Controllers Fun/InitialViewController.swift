@@ -19,7 +19,8 @@ import UIKit
 // manual (we'll trigger in the swift code)
 
 class InitialViewController: UIViewController {
-
+    @IBOutlet var username: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -35,13 +36,41 @@ class InitialViewController: UIViewController {
         // destination: this is the new view controller
         // identifier: this is the string you may have set up in IB (storyboard)
         if let identifier = segue.identifier {
-            if identifier == "automaticSegue" {
+            if identifier == "automaticSegue" || identifier == "manualSegue" {
                 // we want to downcast using as? the destination general UIViewController to a specific subclass SecondViewController
                 if let secondVC = segue.destination as? SecondViewController {
-                    // set a username property in secondVS
+                    // set a username property in secondVC
                     // task: take it from here
+                    if let usernameString = username.text {
+                        secondVC.username = usernameString
+                    }
                 }
             }
+        }
+    }
+    
+    // when the user precesses logout, we want to unwind this method to initial view controller
+    @IBAction func unwindToInitialVC(segue: UIStoryboardSegue) {
+        print("unwinding to initial view controller")
+    }
+    
+    @IBAction func manualSeguePressed(_ sender: UIButton) {
+        // trigger a manual segue
+        print("triggering a manual segue")
+        // call preform segue
+        performSegue(withIdentifier: "manualSegue", sender: self)
+    }
+    
+    // one more segue related method to show
+    // only called for automatic interface builder segue
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        // we dont want to segue to second view controller if the credentials aren't correct
+        // return true  if the user enters a username
+        // return false if they dont enter a username
+        if username.text == "" || username.text == nil {
+            return false
+        } else {
+            return true
         }
     }
     

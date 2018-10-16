@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bde-5D-Pdd">
-                                <rect key="frame" x="16" y="298.5" width="343" height="70"/>
+                                <rect key="frame" x="16" y="278.5" width="343" height="110"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9e4-Ji-S4V">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -33,6 +33,13 @@
                                             <segue destination="elL-jc-WP7" kind="show" identifier="automaticSegue" id="6qv-9T-dp7"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nME-JO-cvE">
+                                        <rect key="frame" x="0.0" y="80" width="343" height="30"/>
+                                        <state key="normal" title="Manual Segue Log In"/>
+                                        <connections>
+                                            <action selector="manualSeguePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cec-CT-SaR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -44,6 +51,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="username" destination="9e4-Ji-S4V" id="Ydx-qF-ttS"/>
+                        <segue destination="elL-jc-WP7" kind="show" identifier="manualSegue" id="1O3-uH-dov"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -69,6 +80,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tk0-vx-CER">
                                         <rect key="frame" x="0.0" y="30.5" width="343" height="30"/>
                                         <state key="normal" title="Log Out"/>
+                                        <connections>
+                                            <segue destination="3Jv-fO-Nxw" kind="unwind" unwindAction="unwindToInitialVCWithSegue:" id="i9i-oV-nOS"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -81,10 +95,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nnx-8g-b7P"/>
                     </view>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="OwW-w0-Ap9" id="3FO-XF-Zls"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIb-Ui-jDR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3Jv-fO-Nxw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="420" y="-63"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="6qv-9T-dp7"/>
+    </inferredMetricsTieBreakers>
 </document>
